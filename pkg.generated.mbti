@@ -1,0 +1,28 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/gitignore"
+
+// Values
+pub fn parse(String) -> Array[Rule]
+
+pub fn parse_line(String, Int) -> Rule?
+
+// Errors
+
+// Types and methods
+pub struct Rule {
+  line : Int
+  original : String
+  pattern : String
+  negated : Bool
+  directory_only : Bool
+  anchored : Bool
+  has_slash : Bool
+}
+pub fn Rule::matchs(Self, String) -> Bool
+pub impl Eq for Rule
+pub impl Show for Rule
+
+// Type aliases
+
+// Traits
+
