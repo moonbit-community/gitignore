@@ -7,7 +7,7 @@ pub struct Rule {
   directory_only : Bool
   anchored : Bool
   has_slash : Bool
-} derive(Eq, Show)
+} derive(Eq, Debug)
 
 ///|
 pub fn Rule::matchs(self : Rule, path : String) -> Bool {
