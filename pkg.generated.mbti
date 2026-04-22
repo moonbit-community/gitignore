@@ -1,6 +1,10 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "moonbit-community/gitignore"
 
+import {
+  "moonbitlang/core/debug",
+}
+
 // Values
 pub fn parse(String) -> Array[Rule]
 
@@ -17,10 +21,8 @@ pub struct Rule {
   directory_only : Bool
   anchored : Bool
   has_slash : Bool
-}
+} derive(Eq, @debug.Debug)
 pub fn Rule::matchs(Self, String) -> Bool
-pub impl Eq for Rule
-pub impl Show for Rule
 
 // Type aliases
 
