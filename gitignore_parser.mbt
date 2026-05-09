@@ -135,7 +135,7 @@ fn Rule::matchs_core(self : Rule, path : String, pattern : String) -> Bool {
 fn split_path_segments(path : String) -> Array[String] {
   let segments = []
   for segment in path.split("/") {
-    let item = segment.to_string()
+    let item = segment.to_owned()
     if !item.is_empty() && item != "." {
       segments.push(item)
     }
@@ -158,7 +158,7 @@ fn normalize_path(path : String) -> String {
   }
 
   if end == chars.length() {
-    view.to_string()
+    view.to_owned()
   } else {
     char_slice_to_string(chars, 0, end)
   }
@@ -390,7 +390,7 @@ fn parse_line_view(line : StringView, line_number : Int) -> Rule? {
         } else {
           Some(Rule::{
             line: line_number,
-            original: normalized.to_string(),
+            original: normalized.to_owned(),
             pattern,
             negated,
             directory_only,
@@ -442,7 +442,7 @@ fn trim_unescaped_trailing_spaces(line : StringView) -> String {
     end -= 1
   }
   if end == chars.length() {
-    line.to_string()
+    line.to_owned()
   } else {
     char_slice_to_string(chars, 0, end)
   }
