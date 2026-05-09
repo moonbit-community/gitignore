@@ -32,7 +32,7 @@ pub fn Rule::matchs(self : Rule, path : String) -> Bool {
 pub fn parse(content : String) -> Array[Rule] {
   let rules = []
   for rest = content[:], line_number = 1 {
-    lexmatch rest {
+    lexmatch rest with longest {
       "" => break rules
       (("[^\n]*" as line) "\n", next) => {
         match parse_line_view(line, line_number) {
@@ -373,14 +373,14 @@ fn parse_line_view(line : StringView, line_number : Int) -> Rule? {
   if trimmed.is_empty() {
     None
   } else {
-    lexmatch trimmed {
+    lexmatch trimmed with longest {
       ("#", _) => None
       _ => {
-        let (negated, no_bang) = lexmatch trimmed {
+        let (negated, no_bang) = lexmatch trimmed with longest {
           ("!", rest) => (true, rest)
           rest => (false, rest)
         }
-        let (anchored, raw_pattern) = lexmatch no_bang {
+        let (anchored, raw_pattern) = lexmatch no_bang with longest {
           ("/", rest) => (true, rest)
           rest => (false, rest)
         }
